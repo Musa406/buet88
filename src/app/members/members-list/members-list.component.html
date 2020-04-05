@@ -1,0 +1,76 @@
+
+
+
+    <mat-card>
+        <mat-card-header class="table-title">
+          <mat-card-title style="font-size: xx-large;"><b>Members</b></mat-card-title>
+        </mat-card-header>
+        
+        <mat-card-content>
+           
+                <input class="form-control" (keyup)="applyFilter($event)" placeholder="Search" style="width: auto;margin-top: 2%; margin-bottom: 2%;">
+            
+            <div>
+                <table mat-table [dataSource]="dataSource" matSort class="table table-striped table-hover">
+                    
+                        <!-- ID Column -->
+                        <ng-container matColumnDef="id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="column-header"> # </th>
+                            <td mat-cell *matCellDef="let row" class="row-hover"> {{row.id}}</td>
+                        </ng-container>
+                    
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="name" >
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="column-header">Name</th>
+                            <td mat-cell *matCellDef="let row">
+                                <a href="member-details" >
+                                    <img src="{{row.image}}" align="left" class="name-image">
+                                    <h2  class="name-link name-link-hover" align="left" style="text-decoration: none;" >{{row.name}}</h2>
+                                </a>   
+                            </td>
+                        </ng-container>
+                        
+                        <!-- memberAddedOn Column -->
+                        <ng-container matColumnDef="memberAddedOn">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="column-header"> Member Added On </th>
+                            <td mat-cell *matCellDef="let row">{{row.memberAddedOn}}</td>
+                        </ng-container>
+                        <!-- Hall Column -->
+                        <ng-container matColumnDef="department">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="column-header"> Department </th>
+                            <td mat-cell *matCellDef="let row">{{row.department}}</td>
+                        </ng-container> 
+                        <!-- Hall Column -->
+                        <ng-container matColumnDef="hall">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="column-header"> Hall </th>
+                            <td mat-cell *matCellDef="let row">{{row.hall}}</td>
+                        </ng-container>
+                    
+                        <!-- Color Column -->
+                        <ng-container matColumnDef="actions">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header class="column-header"> Actions </th>
+                            <td mat-cell *matCellDef="let row" >
+                                
+                                <a href="#"  matTooltip="Settings" class="settings"><i class="material-icons"></i></a>
+                                <a href="#" matTooltip="Detele" class="delete"><i class="material-icons"></i></a>
+                          
+                            </td>
+                          
+                        
+                        </ng-container>
+                    
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+              
+                <mat-paginator [pageSizeOptions]="pageOptions"></mat-paginator>
+              </div>  
+        </mat-card-content>
+    
+        <!-- <mat-card-footer>
+        </mat-card-footer> -->
+      </mat-card>
+
+  
+
+  

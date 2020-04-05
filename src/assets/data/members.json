@@ -1,0 +1,20 @@
+[
+    {
+        "id":"1", "image":"../../../assets/image/client-1.jpg","name":"Name--1","memberAddedOn":"04/10/2013", "department":"CSE","hall":"FH"
+    },
+    {
+        "id":"2", "image":"../../../assets/image/client-2.jpg","name":"Name--2","memberAddedOn":"04/10/2013", "department":"CSE","hall":"FH"
+    },
+    {
+        "id":"3", "image":"../../../assets/image/client-1.jpg","name":"Name--3","memberAddedOn":"05/08/2014", "department":"CSE","hall":"FH"
+    },
+    {
+        "id":"4", "image":"../../../assets/image/client-2.jpg","name":"Name--4","memberAddedOn":"05/08/2014", "department":"CSE","hall":"FH"
+    },
+    {
+        "id":"5", "image":"../../../assets/image/client-1.jpg","name":"Name--5","memberAddedOn":"05/08/2014", "department":"CSE","hall":"FH"
+    },
+    {
+        "id":"6", "image":"../../../assets/image/client-2.jpg","name":"Name--6","memberAddedOn":"05/08/2014", "department":"EEE","hall":"FH"
+    }
+]
