@@ -11,7 +11,7 @@
                 <input class="form-control" (keyup)="applyFilter($event)" placeholder="Search" style="width: auto;margin-top: 2%; margin-bottom: 2%;">
             
             <div>
-                <table mat-table [dataSource]="dataSource" matSort class="table table-striped table-hover">
+                <table mat-table [dataSource]="dataSource" matSort class="table-hover">
                     
                         <!-- ID Column -->
                         <ng-container matColumnDef="id">
@@ -23,10 +23,10 @@
                         <ng-container matColumnDef="name" >
                             <th mat-header-cell *matHeaderCellDef mat-sort-header class="column-header">Name</th>
                             <td mat-cell *matCellDef="let row">
-                                <a href="member-details" >
-                                    <img src="{{row.image}}" align="left" class="name-image">
-                                    <h2  class="name-link name-link-hover" align="left" style="text-decoration: none;" >{{row.name}}</h2>
-                                </a>   
+                                <a (click)="onNameListClick(row.id)" style="text-decoration: none; color: #566787;" class="name-link-hover" >
+                                    <img src="{{row.image}}" align="left" class="name-image" alt="Avatar">
+                                    <b>{{row.name}}</b>
+                                </a>
                             </td>
                         </ng-container>
                         

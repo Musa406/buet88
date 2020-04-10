@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
@@ -6,6 +6,8 @@ import {MatTableDataSource} from '@angular/material/table';
 import {DomSanitizer} from '@angular/platform-browser';
 import {MatIconRegistry} from '@angular/material/icon';
 import { ServiceService } from 'src/app/_service/service.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 export interface UserData {
   id: string;
@@ -15,14 +17,7 @@ export interface UserData {
   department: string;
   hall: string;
 }
-// const COLORS: string[] = [
-//   'maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple', 'fuchsia', 'lime', 'teal',
-//   'aqua', 'blue', 'navy', 'black', 'gray'
-// ];
-// const NAMES: string[] = [
-//   'Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack', 'Charlotte', 'Theodore', 'Isla', 'Oliver',
-//   'Isabella', 'Jasper', 'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'
-// ];
+
 
 @Component({
   selector: 'app-members-list',
@@ -31,7 +26,9 @@ export interface UserData {
 })
 
 
-export class MembersListComponent implements OnInit {
+export class MembersListComponent implements OnInit, OnDestroy {
+
+  subscription: Subscription;
 
   pageOptions = ['5', '10', '25', '100'];
   displayedColumns: string[] = ['id', 'name', 'memberAddedOn', 'department', 'hall', 'actions'];
@@ -40,22 +37,20 @@ export class MembersListComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer,
-    private _service: ServiceService
-    ) {
-    // Create 100 users
-    // const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
-
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource();
-    // iconRegistry.addSvgIcon(
-    //   'thumbs-up',
-    //   sanitizer.bypassSecurityTrustResourceUrl('assets/img/examples/thumbup-icon.svg'));
-  }
+  constructor(
+    iconRegistry: MatIconRegistry,
+    sanitizer: DomSanitizer,
+    private _service: ServiceService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+    ) 
+    {
+      this.dataSource = new MatTableDataSource();
+    }
+ 
 
   ngOnInit() {
- 
-    this._service.getMembers('').subscribe(
+    this.subscription = this._service.getMembers('').subscribe(
       (data)=>{
         console.log(data);
         this.dataSource = new MatTableDataSource(data);
@@ -63,6 +58,10 @@ export class MembersListComponent implements OnInit {
         this.dataSource.sort = this.sort;
       }
     );
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
   }
 
   applyFilter(event: Event) {
@@ -73,17 +72,8 @@ export class MembersListComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
+  onNameListClick(id){
+    this.router.navigate(['member-details', id],{ relativeTo: this.activatedRoute });
+  }
 }
-
-/** Builds and returns a new User. */
-// function createNewUser(id: number): UserData {
-//   const name = NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-//       NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-
-//   return {
-//     id: id.toString(),
-//     name: name,
-//     progress: Math.round(Math.random() * 100).toString(),
-//     color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
-//   };
-// }

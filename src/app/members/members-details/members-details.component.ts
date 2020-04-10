@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { ServiceService } from 'src/app/_service/service.service';
 
 @Component({
   selector: 'app-members-details',
@@ -7,9 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MembersDetailsComponent implements OnInit {
 
-  constructor() { }
+  constructor( private activatedRoute: ActivatedRoute,
+    private _serice: ServiceService
+    ) { }
 
   ngOnInit(): void {
+    const id = this.getMemberId();
+    this.getMemberDetails(id);
   }
-
+  getMemberId() {
+    this.activatedRoute.params.subscribe(
+      (data:Params)=>{
+        console.log('params test-->'+ data.id);
+      }
+    );
+  }
+  getMemberDetails(id) {
+   this._serice.getSingleMemberDetails(id).subscribe(
+     (memberDetails)=>{
+       console.log(memberDetails);
+     }
+   );
+  }
 }

@@ -12,4 +12,7 @@ export class ServiceService {
   getMembers(memberUrl:string){
     return this.http.get<[]>(this.baseUrl);
   }
+  getSingleMemberDetails(memberID:any){
+    return this.http.get<any>(this.baseUrl, memberID);
+  }
 }

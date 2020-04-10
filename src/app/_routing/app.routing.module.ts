@@ -7,7 +7,7 @@ import { MembersListComponent } from '../members/members-list/members-list.compo
 const routes: Routes = [
   { path: '', redirectTo: '/member', pathMatch:'full'},
   { path: 'member', component: MembersListComponent},
-  { path: 'member-details', component: MembersDetailsComponent }
+  { path: 'member/member-details/:id', component: MembersDetailsComponent }
 ];
 
 @NgModule({

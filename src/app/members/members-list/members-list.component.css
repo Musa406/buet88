@@ -25,6 +25,7 @@ background-color: #91a865;
 .name-image{
     height: 60px;
     width: 60px;
+  
 }
 img {
   border-radius: 50%;
@@ -35,7 +36,7 @@ img {
 }
 
 .name-link-hover :hover{
-  text-decoration-color: darkblue;
+  color: blue;
 }
 .inline-block {
   display: inline-block;
