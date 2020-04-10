@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MembersDetailsComponent } from '../members/members-details/members-details.component';
+
 import { MembersListComponent } from '../members/members-list/members-list.component';
+import { MembersDetailsComponent } from '../members/members-details/members-details.component';
+import { AuthGuardService } from '../_service/auth-guard.service';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/member', pathMatch:'full'},
   { path: 'member', component: MembersListComponent},
-  { path: 'member/member-details/:id', component: MembersDetailsComponent }
+  { path: 'member/member-details/:id', component: MembersDetailsComponent,
+  canActivate: [AuthGuardService] }
 ];
 
 @NgModule({

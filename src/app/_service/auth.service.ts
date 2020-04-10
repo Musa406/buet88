@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
- private authenticated = false;
+ private authenticated = true;
  private redirectUrl: string;
 
  constructor(private router: Router) { }
@@ -16,7 +16,8 @@ export class AuthService {
  }
 
  public auth(login: string, password: string): void {
-   if (login === 'foo' && password === 'bar') {
+
+   if (login === 'admin' && password === '@dmln123') {
      this.authenticated = true;
      this.redirectUrl = this.redirectUrl === undefined ? '/' : this.redirectUrl;
      this.router.navigate([this.redirectUrl]);

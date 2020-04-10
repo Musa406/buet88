@@ -10,25 +10,27 @@ import { HttpClientModule } from '@angular/common/http';
 import { ServiceService } from './_service/service.service';
 import { AppRoutingModule } from './_routing/app.routing.module';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { MemberModule } from './members/member.module';
 // import { MemberModule } from './members/member.module';
+
+
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MembersListComponent,
+    MembersDetailsComponent
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
-    MemberModule
-    
-    
-    
-    
-   
+    // MemberModule,
+
+
   ],
   providers: [ServiceService],
   bootstrap: [AppComponent]

@@ -28,7 +28,7 @@ export interface UserData {
 
 export class MembersListComponent implements OnInit, OnDestroy {
 
-  subscription: Subscription;
+  subscription: Subscription
 
   pageOptions = ['5', '10', '25', '100'];
   displayedColumns: string[] = ['id', 'name', 'memberAddedOn', 'department', 'hall', 'actions'];

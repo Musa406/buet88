@@ -5,8 +5,8 @@ import { MembersDetailsComponent } from './members-details/members-details.compo
 
 const memberComponents = [
   MembersListComponent,
-  MembersDetailsComponent
-]
+  MembersDetailsComponent,
+];
 
 @NgModule({
   declarations: [memberComponents],
